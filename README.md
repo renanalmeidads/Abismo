@@ -22,7 +22,7 @@ O jogo consiste em somente 1 fase com diferentes etapas. Em cada etapa novos des
 
 Assim como cada umas das zonas de profundidade possuem nomes específicos, onde cada uma dessas zonas funciona como uma nova "fase" do jogo, sendo elas:
 
-![ocean_zones](https://i.etsystatic.com/20535210/r/il/695843/2515086477/il_fullxfull.2515086477_slgq.jpg =x600)
+![ocean_zones](ocean_zones.avif =x600)
 
 ## Esquema de pontuação
 
@@ -40,4 +40,4 @@ A pontuação é correspondente com à profundidade alcançada antes de ter seu 
 * 1. **`<Jogador#1>`** Controla o submarino.
 
 ## Protótipos de tela
-![prototipo_telas](=x600)
+![prototipo_telas](prototipo.drawio.png =x600)
