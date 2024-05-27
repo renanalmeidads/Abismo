@@ -41,7 +41,8 @@ const config = {
     },
     scene: [Handler, Hub, Preload, Level],
 
-    physics: physicsObject
+    physics: physicsObject,
+    pixelArt: true,
 }
 
 const game = new Phaser.Game(config);

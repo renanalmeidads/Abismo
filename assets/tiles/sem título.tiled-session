@@ -10,12 +10,30 @@
         "": {
             "scaleInDock": 1
         },
+        "Idle.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "agua_viva_idle.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "jellyfish-idle.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "jellyfish-idle.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "map.json": {
             "scale": 0.125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -516,
-                "y": 5584
+                "x": -528,
+                "y": 288
             }
         },
         "map.json#rock": {
@@ -26,31 +44,34 @@
             "scale": 0.3809895833333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1.312371838687568,
-                "y": -254.6001367053998
+                "x": -2.6247436773753634,
+                "y": -259.8496240601503
             }
         },
         "map.tmj#rock": {
             "scaleInDock": 1
         },
         "map.tmx": {
-            "scale": 0.33,
+            "scale": 0.015625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -4.545454545454504,
-                "y": -281.81818181818176
+                "x": 2368,
+                "y": -45824
             }
         },
         "map.tmx#rock": {
             "scaleInDock": 1
         },
         "rock.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         }
     },
+    "frame.defaultDuration": 150,
     "last.exportedFilePath": "D:/_dev/UNI7/Estagio1/abismo/Abismo/assets/tiles",
-    "last.imagePath": "D:/_dev/UNI7/Estagio1/abismo/Abismo/assets/tiles",
+    "last.imagePath": "D:/_dev/UNI7/Estagio1/abismo/Abismo/assets/tiles/Fishes/1",
+    "lastUsedTilesetExportFilter": "JSON tileset files (*.tsj *.json)",
     "map.fixedSize": false,
     "map.lastUsedExportFilter": "Ficheiros de mapa JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
@@ -59,11 +80,24 @@
     "project": "sem título.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "jellyfish-idle.json",
         "map.tmx",
-        "map.json",
         "map.tmj",
+        "jellyfish-idle.tsx",
+        "Idle.tsx",
+        "agua_viva_idle.tsx",
+        "map.json",
         "rock.tsx"
     ],
     "tileset.embedInMap": true,
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
 }

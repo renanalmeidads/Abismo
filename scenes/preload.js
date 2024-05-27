@@ -14,6 +14,8 @@ export default class Preload extends Phaser.Scene {
         this.load.image('submarine', 'assets/images/submarine.png');
         this.load.tilemapTiledJSON("map", "assets/tiles/map.json");
         this.load.image('rock-tiles', 'assets/tiles/rock-tiles.png');
+        this.load.spritesheet('jellyfish-idle', 'assets/tiles/Fishes/1/Idle.png', { frameWidth: 48, frameHeight: 48 });
+        this.load.spritesheet('jellyfish-walk', 'assets/tiles/Fishes/1/Walk.png', { frameWidth: 48, frameHeight: 48 });
 
         this.canvasWidth = this.sys.game.canvas.width
         this.canvasHeight = this.sys.game.canvas.height

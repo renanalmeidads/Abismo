@@ -1,6 +1,8 @@
 import PlayerSprite from './player-sprite.js';
 import { GameOptions } from '../game-options.js';
 import { Direction } from '../utils/directions.js';
+import { createJellyfishAnims } from '../anims/EnemiesAnims.js';
+import Jellyfish from '../enemies/Jellyfish.js';
 
 export default class Level extends Phaser.Scene {
     constructor() {
@@ -16,6 +18,8 @@ export default class Level extends Phaser.Scene {
     }
 
     create() {
+        createJellyfishAnims(this.anims);
+
         const { width, height } = this;
         
         this.handlerScene.updateResize(this);
@@ -43,8 +47,41 @@ export default class Level extends Phaser.Scene {
 
         this.submarine.setScale(.5);
 
+        //this.submarine.body.setAllowGravity(false);
+
         this.physics.add.collider(this.submarine, this.rightWall);
         this.physics.add.collider(this.submarine, this.leftWall);
+
+        const jellyfishes = this.physics.add.group({
+            classType: Jellyfish,
+            allowGravity: false,
+            createCallback: (go) => {
+                go.body.onCollide = true;
+            } 
+        })
+
+        jellyfishes.get(100, 1000, 'jellyfish');
+        jellyfishes.get(150, 1400, 'jellyfish');
+        jellyfishes.get(250, 1700, 'jellyfish');
+
+        jellyfishes.get(100, 2000, 'jellyfish');
+        jellyfishes.get(150, 2200, 'jellyfish');
+        jellyfishes.get(250, 2450, 'jellyfish');
+        jellyfishes.get(375, 2673, 'jellyfish');
+
+        jellyfishes.get(350, 2800, 'jellyfish');
+        jellyfishes.get(250, 2950, 'jellyfish');
+        jellyfishes.get(275, 2300, 'jellyfish');
+        jellyfishes.get(375, 2500, 'jellyfish');
+
+        this.physics.add.collider(jellyfishes, this.rightWall);
+        this.physics.add.collider(jellyfishes, this.leftWall);
+
+        // const jellyfish = this.physics.add.sprite(100, 2000, 'jellyfish');
+
+        // jellyfish.body.setAllowGravity(false);
+
+        //this.enemy1 = new EnemySprite(this, width / 2, height / 2, 'jellyfish');
 
         this.setCameras();
 
