@@ -2,6 +2,7 @@ import Handler from "./scenes/handler.js";
 import Preload from "./scenes/preload.js";
 import Hub from "./scenes/hub.js";
 import Level from "./scenes/level.js";
+import GameUI from "./scenes/gameui.js";
 import { GameOptions } from "./game-options.js";
 
 const MAX_SIZE_WIDTH_SCREEN = 1920;
@@ -39,7 +40,7 @@ const config = {
   dom: {
     createContainer: true,
   },
-  scene: [Handler, Hub, Preload, Level],
+  scene: [Handler, Hub, Preload, Level, GameUI],
 
   physics: physicsObject,
   pixelArt: true,

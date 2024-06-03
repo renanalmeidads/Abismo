@@ -8,6 +8,8 @@ import Submarine from "../characters/Submarine.js";
 export default class Level extends Phaser.Scene {
   constructor() {
     super({ key: "level" });
+
+    this.light = null;
   }
 
   preload() {
@@ -19,6 +21,8 @@ export default class Level extends Phaser.Scene {
   }
 
   create() {
+    this.scene.run("game-ui");
+
     createJellyfishAnims(this.anims);
 
     const { width, height } = this;
