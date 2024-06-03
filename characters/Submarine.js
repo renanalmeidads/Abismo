@@ -1,15 +1,22 @@
 import { GameOptions } from "../game-options.js";
 import { Direction } from "../utils/directions.js";
+import { sceneEvents } from "../events/EventsCenter.js";
 
 const HealthState = {
   IDLE: 0,
   DAMAGE: 1,
+  DEAD: 2,
 };
 
 export default class Submarine extends Phaser.Physics.Arcade.Sprite {
   direction = Direction.DOWN;
   healthState = HealthState.IDLE;
   damageTime = 0;
+  _health = 5;
+
+  health = () => {
+    return this._health;
+  };
 
   constructor(scene, x, y) {
     super(scene, x, y, "submarine");
@@ -20,7 +27,14 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
   }
 
   handleDamage(dir) {
-    if (this.healthState === HealthState.DAMAGE) {
+    if (this._health <= 0) {
+      return;
+    }
+
+    if (
+      this.healthState === HealthState.DAMAGE ||
+      this.healthState === HealthState.DEAD
+    ) {
       return;
     }
 
@@ -39,17 +53,32 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
   preUpdate(t, dt) {
     super.preUpdate(t, dt);
 
+    if (this.healthState === HealthState.DEAD) {
+      return;
+    }
+
     switch (this.healthState) {
       case HealthState.IDLE:
         break;
       case HealthState.DAMAGE:
         this.damageTime += dt;
 
-        if (this.damageTime >= 250) {
+        if (this.damageTime >= 1000) {
           this.healthState = HealthState.IDLE;
           this.setTint(0xffffff);
           this.damageTime = 0;
+
+          console.log("eae");
+
+          --this._health;
+
+          if (this._health <= 0) {
+            this.healthState = HealthState.DEAD;
+          }
+
+          sceneEvents.emit("player-health-changed", this.health);
         }
+
         break;
     }
 

@@ -1,13 +1,13 @@
 import { Direction, randomDirection } from "../utils/directions.js";
 
-export default class Jellyfish extends Phaser.Physics.Arcade.Sprite {
+export default class Eel extends Phaser.Physics.Arcade.Sprite {
   direction = Direction.RIGHT;
   moveEvent;
 
   constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    this.anims.play("jellyfish-walk");
+    this.anims.play("eel-walk");
 
     this.setScale(1.4);
 
@@ -21,6 +21,22 @@ export default class Jellyfish extends Phaser.Physics.Arcade.Sprite {
       delay: 3000,
       callback: () => {
         this.direction = randomDirection();
+      },
+      loop: true,
+    });
+
+    this.attackEvent = scene.time.addEvent({
+      delay: 2000,
+      callback: () => {
+        this.anims.play("eel-attack");
+      },
+      loop: true,
+    });
+
+    this.attackEvent = scene.time.addEvent({
+      delay: 3000,
+      callback: () => {
+        this.anims.play("eel-walk");
       },
       loop: true,
     });

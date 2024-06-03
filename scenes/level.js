@@ -4,6 +4,8 @@ import { Direction } from "../utils/directions.js";
 import { createJellyfishAnims } from "../anims/EnemiesAnims.js";
 import Jellyfish from "../enemies/Jellyfish.js";
 import Submarine from "../characters/Submarine.js";
+import { sceneEvents } from "../events/EventsCenter.js";
+import Eel from "../enemies/Eel.js";
 
 export default class Level extends Phaser.Scene {
   constructor() {
@@ -74,9 +76,19 @@ export default class Level extends Phaser.Scene {
       },
     });
 
+    const eels = this.physics.add.group({
+      classType: Eel,
+      allowGravity: false,
+      createCallback: (go) => {
+        go.body.onCollide = true;
+      },
+    });
+
     jellyfishes.get(100, 1000, "jellyfish");
     jellyfishes.get(150, 1400, "jellyfish");
     jellyfishes.get(250, 1700, "jellyfish");
+
+    eels.get(300, 1800, "eel");
 
     jellyfishes.get(100, 2000, "jellyfish");
     jellyfishes.get(150, 2200, "jellyfish");
@@ -91,6 +103,9 @@ export default class Level extends Phaser.Scene {
     this.physics.add.collider(jellyfishes, this.rightWall);
     this.physics.add.collider(jellyfishes, this.leftWall);
 
+    this.physics.add.collider(eels, this.rightWall);
+    this.physics.add.collider(eels, this.leftWall);
+
     this.physics.add.collider(
       jellyfishes,
       this.submarine,
@@ -99,8 +114,28 @@ export default class Level extends Phaser.Scene {
       this
     );
 
+    this.physics.add.collider(
+      eels,
+      this.submarine,
+      this.handleSubmarineEelsCollision,
+      undefined,
+      this
+    );
+
     this.setCameras();
   }
+
+  handleSubmarineEelsCollision = (obj1, obj2) => {
+    console.dir(obj1);
+    console.dir(obj2);
+
+    const dx = this.submarine.x - obj2.x;
+    const dy = this.submarine.y - obj2.y;
+
+    const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(75);
+
+    this.submarine.handleDamage(dir);
+  };
 
   handleSubmarineJellyfishesCollision = (obj1, obj2) => {
     console.dir(obj1);
@@ -142,7 +177,7 @@ export default class Level extends Phaser.Scene {
 
   setCameras() {
     this.actionCamera = this.cameras.add(0, 0, this.width, this.height);
-    this.actionCamera.setBackgroundColor("#7DBCDE");
+    this.actionCamera.setBackgroundColor("#003366");
 
     this.actionCamera.startFollow(
       this.submarine,
