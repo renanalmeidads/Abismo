@@ -74,6 +74,7 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
 
           if (this._health <= 0) {
             this.healthState = HealthState.DEAD;
+            sceneEvents.emit("player-dead");
           }
 
           sceneEvents.emit("player-health-changed", this.health);

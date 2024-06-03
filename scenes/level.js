@@ -123,6 +123,12 @@ export default class Level extends Phaser.Scene {
     );
 
     this.setCameras();
+
+    sceneEvents.on("player-dead", this.reset, this);
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      sceneEvents.off("player-dead", this.reset, this);
+    });
   }
 
   handleSubmarineEelsCollision = (obj1, obj2) => {
@@ -189,5 +195,9 @@ export default class Level extends Phaser.Scene {
     );
 
     this.cameras.main.ignore([this.submarine, this.rightWall, this.leftWall]);
+  }
+
+  reset() {
+    this.scene.restart();
   }
 }
