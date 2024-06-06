@@ -11,6 +11,13 @@ export default class Preload extends Phaser.Scene {
   preload() {
     this.load.image("guide", "assets/images/540x960-guide.png");
     this.load.image("submarine", "assets/images/submarine.png");
+    this.load.image(
+      "menu-background",
+      "assets/images/deepsea-background-2.jpg"
+    );
+    this.load.image("abismo-logo", "assets/images/abismo-logo.png");
+    this.load.image("play", "assets/images/play.png");
+    this.load.image("credits", "assets/images/credits.png");
     this.load.tilemapTiledJSON("map", "assets/tiles/map.json");
     this.load.image("rock-tiles", "assets/tiles/rock-tiles.png");
     this.load.spritesheet("jellyfish-idle", "assets/tiles/Fishes/1/Idle.png", {
@@ -72,7 +79,7 @@ export default class Preload extends Phaser.Scene {
           this.sceneStopped = true;
           this.scene.stop("preload");
           this.handlerScene.cameras.main.setBackgroundColor("#000000");
-          this.handlerScene.launchScene("level");
+          this.handlerScene.launchScene("menu");
         },
         loop: false,
       });
