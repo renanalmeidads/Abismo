@@ -6,8 +6,11 @@ import Jellyfish from "../enemies/Jellyfish.js";
 import Submarine from "../characters/Submarine.js";
 import { sceneEvents } from "../events/EventsCenter.js";
 import Eel from "../enemies/Eel.js";
+import { ScoreOperations } from "../common/score.js";
 
 export default class Level extends Phaser.Scene {
+  scoreAccumulator = 0;
+
   constructor() {
     super({ key: "level" });
 
@@ -177,6 +180,19 @@ export default class Level extends Phaser.Scene {
         this.submarine.body.velocity.x -= 0.1;
       } else if (this.submarine.body.velocity.x < 0) {
         this.submarine.body.velocity.x += 0.1;
+      }
+    }
+
+    if (this.submarine.body.velocity.y > 5) {
+      this.scoreAccumulator++;
+
+      if (this.scoreAccumulator > 7) {
+        sceneEvents.emit("increase-score", {
+          operation: ScoreOperations.INCREASE,
+          value: 1,
+        });
+
+        this.scoreAccumulator = 0;
       }
     }
   }

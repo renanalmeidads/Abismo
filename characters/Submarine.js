@@ -130,6 +130,7 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
           moveSubmarine(Direction.UP);
           console.log("swipeup");
         } else if (upY > downY + threshold) {
+          moveSubmarine(Direction.DOWN);
           console.log("swipedown");
         }
       },

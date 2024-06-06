@@ -1,10 +1,18 @@
 import { sceneEvents } from "../events/EventsCenter.js";
+import { Score, ScoreOperations } from "../common/score.js";
 
 export default class GameUI extends Phaser.Scene {
   hearts;
+  score;
 
   constructor() {
     super({ key: "game-ui" });
+  }
+
+  preload() {
+    this.width = this.game.screenBaseSize.width;
+
+    this.score = new Score(this, this.width - 150, 0, 0);
   }
 
   create() {

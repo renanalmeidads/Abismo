@@ -14,15 +14,15 @@ const createJellyfishAnims = (anims) => {
   });
   anims.create({
     key: "eel-attack",
-    frames: anims.generateFrameNumbers("eel-attack", { start: 0, end: 3 }),
-    frameRate: 6,
+    frames: anims.generateFrameNumbers("eel-attack", { start: 0, end: 5 }),
+    frameRate: 8,
     repeat: -1,
   });
 
   anims.create({
     key: "eel-walk",
-    frames: anims.generateFrameNumbers("eel-walk", { start: 0, end: 3 }),
-    frameRate: 6,
+    frames: anims.generateFrameNumbers("eel-walk", { start: 0, end: 5 }),
+    frameRate: 8,
     repeat: -1,
   });
 };
