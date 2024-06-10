@@ -23,7 +23,6 @@ export default class Menu extends Phaser.Scene {
     creditsButton.setScale(0.15);
 
     background.setDisplaySize(this.width, this.height);
-    //background.setCrop(0, 0, this.width, this.height);
 
     playButton.setInteractive();
 

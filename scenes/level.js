@@ -7,6 +7,9 @@ import Submarine from "../characters/Submarine.js";
 import { sceneEvents } from "../events/EventsCenter.js";
 import Eel from "../enemies/Eel.js";
 import { ScoreOperations } from "../common/score.js";
+import Octopus from "../enemies/Octopus.js";
+import Swordfish from "../enemies/Swordfish.js";
+import Anglerfish from "../enemies/Anglerfish.js";
 
 export default class Level extends Phaser.Scene {
   scoreAccumulator = 0;
@@ -26,6 +29,8 @@ export default class Level extends Phaser.Scene {
   }
 
   create() {
+    const yOffset = 3500;
+
     this.scene.run("game-ui");
 
     createJellyfishAnims(this.anims);
@@ -38,8 +43,8 @@ export default class Level extends Phaser.Scene {
 
     const tileset = map.addTilesetImage("rock", "rock-tiles");
 
-    this.rightWall = map.createLayer("right_wall", tileset, 310, 1000);
-    this.leftWall = map.createLayer("left_wall", tileset, -370, 1000);
+    this.rightWall = map.createLayer("right_wall", tileset, 0, 850);
+    this.leftWall = map.createLayer("left_wall", tileset, -580, 50);
 
     this.rightWall.setScale(0.3);
     this.leftWall.setScale(0.3);
@@ -53,7 +58,12 @@ export default class Level extends Phaser.Scene {
     if (this.game.debugMode)
       this.add.image(0, 0, "guide").setOrigin(0).setDepth(1);
 
-    this.submarine = this.add.submarine(width / 2, height / 2);
+    this.submarine = this.add.submarine(width / 2, yOffset);
+
+    //this.submarine = this.add.submarine(width / 2, 2500);
+
+    // Bottom
+    //this.submarine = this.add.submarine(width / 2, 15400);
 
     this.physics.add.collider(
       this.submarine,
@@ -62,6 +72,7 @@ export default class Level extends Phaser.Scene {
       undefined,
       this
     );
+
     this.physics.add.collider(
       this.submarine,
       this.leftWall,
@@ -87,27 +98,91 @@ export default class Level extends Phaser.Scene {
       },
     });
 
-    jellyfishes.get(100, 1000, "jellyfish");
-    jellyfishes.get(150, 1400, "jellyfish");
-    jellyfishes.get(250, 1700, "jellyfish");
+    const octopuses = this.physics.add.group({
+      classType: Octopus,
+      allowGravity: false,
+      createCallback: (go) => {
+        go.body.onCollide = true;
+      },
+    });
 
-    eels.get(300, 1800, "eel");
+    const swordfishes = this.physics.add.group({
+      classType: Swordfish,
+      allowGravity: false,
+      createCallback: (go) => {
+        go.body.onCollide = true;
+      },
+    });
 
-    jellyfishes.get(100, 2000, "jellyfish");
-    jellyfishes.get(150, 2200, "jellyfish");
-    jellyfishes.get(250, 2450, "jellyfish");
-    jellyfishes.get(375, 2673, "jellyfish");
+    const anglerfishes = this.physics.add.group({
+      classType: Anglerfish,
+      allowGravity: false,
+      createCallback: (go) => {
+        go.body.onCollide = true;
+      },
+    });
 
-    jellyfishes.get(350, 2800, "jellyfish");
-    jellyfishes.get(250, 2950, "jellyfish");
-    jellyfishes.get(275, 2300, "jellyfish");
-    jellyfishes.get(375, 2500, "jellyfish");
+    //anglerfishes.get(100, 1000, "anglerfish");
+    jellyfishes.get(300, yOffset + 400, "jellyfish");
+    jellyfishes.get(50, yOffset + 500, "jellyfish");
+    jellyfishes.get(100, yOffset + 800, "jellyfish");
+    jellyfishes.get(250, yOffset + 1000, "jellyfish");
+
+    eels.get(350, yOffset + 1200, "eel");
+
+    jellyfishes.get(450, yOffset + 1350, "jellyfish");
+
+    eels.get(450, yOffset + 1700, "eel");
+
+    eels.get(450, yOffset + 2000, "eel");
+
+    swordfishes.get(150, yOffset + 2400, "swordfish");
+
+    swordfishes.get(250, yOffset + 2900, "swordfish");
+
+    swordfishes.get(50, yOffset + 3200, "swordfish");
+
+    octopuses.get(50, yOffset + 3000, "octopus");
+
+    swordfishes.get(20, yOffset + 3500, "swordfish");
+
+    swordfishes.get(400, yOffset + 4500, "swordfish");
+
+    swordfishes.get(270, yOffset + 5000, "swordfish");
+
+    octopuses.get(300, yOffset + 6000, "octopus");
+
+    octopuses.get(300, yOffset + 7000, "octopus");
+
+    octopuses.get(300, yOffset + 7500, "octopus");
+
+    anglerfishes.get(100, yOffset + 8500, "anglerfish");
+    anglerfishes.get(100, yOffset + 8900, "anglerfish");
+    anglerfishes.get(100, yOffset + 9500, "anglerfish");
+
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
+    anglerfishes.get(100, yOffset + 14500, "anglerfish");
 
     this.physics.add.collider(jellyfishes, this.rightWall);
     this.physics.add.collider(jellyfishes, this.leftWall);
 
     this.physics.add.collider(eels, this.rightWall);
     this.physics.add.collider(eels, this.leftWall);
+
+    this.physics.add.collider(octopuses, this.rightWall);
+    this.physics.add.collider(octopuses, this.leftWall);
+
+    this.physics.add.collider(swordfishes, this.rightWall);
+    this.physics.add.collider(swordfishes, this.leftWall);
+
+    this.physics.add.collider(anglerfishes, this.rightWall);
+    this.physics.add.collider(anglerfishes, this.leftWall);
 
     this.physics.add.collider(
       jellyfishes,
@@ -125,6 +200,30 @@ export default class Level extends Phaser.Scene {
       this
     );
 
+    this.physics.add.collider(
+      octopuses,
+      this.submarine,
+      this.handleSubmarineEelsCollision,
+      undefined,
+      this
+    );
+
+    this.physics.add.collider(
+      swordfishes,
+      this.submarine,
+      this.handleSubmarineEelsCollision,
+      undefined,
+      this
+    );
+
+    this.physics.add.collider(
+      anglerfishes,
+      this.submarine,
+      this.handleSubmarineEelsCollision,
+      undefined,
+      this
+    );
+
     this.setCameras();
 
     sceneEvents.on("player-dead", this.reset, this);
@@ -135,9 +234,6 @@ export default class Level extends Phaser.Scene {
   }
 
   handleSubmarineEelsCollision = (obj1, obj2) => {
-    console.dir(obj1);
-    console.dir(obj2);
-
     const dx = this.submarine.x - obj2.x;
     const dy = this.submarine.y - obj2.y;
 
@@ -147,9 +243,6 @@ export default class Level extends Phaser.Scene {
   };
 
   handleSubmarineJellyfishesCollision = (obj1, obj2) => {
-    console.dir(obj1);
-    console.dir(obj2);
-
     const dx = this.submarine.x - obj2.x;
     const dy = this.submarine.y - obj2.y;
 
@@ -159,9 +252,6 @@ export default class Level extends Phaser.Scene {
   };
 
   handleSubmarineWallCollision = (obj1, obj2) => {
-    console.dir(obj1);
-    console.dir(obj2);
-
     const dx = obj2.x - this.submarine.x;
     const dy = obj2.y - this.submarine.y;
 

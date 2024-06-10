@@ -36,6 +36,19 @@ export default class Preload extends Phaser.Scene {
       frameWidth: 48,
       frameHeight: 48,
     });
+    this.load.spritesheet("octopus-walk", "assets/tiles/Fishes/6/Walk.png", {
+      frameWidth: 48,
+      frameHeight: 48,
+    });
+    this.load.spritesheet("swordfish-walk", "assets/tiles/Fishes/3/Walk.png", {
+      frameWidth: 48,
+      frameHeight: 48,
+    });
+    this.load.spritesheet("anglerfish-walk", "assets/tiles/Fishes/4/Walk.png", {
+      frameWidth: 48,
+      frameHeight: 48,
+    });
+
     this.load.image("ui-empty-heart", "assets/images/ui/ui_heart_empty.png");
     this.load.image("ui-full-heart", "assets/images/ui/ui_heart_full.png");
 

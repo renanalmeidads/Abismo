@@ -68,8 +68,6 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
           this.setTint(0xffffff);
           this.damageTime = 0;
 
-          console.log("eae");
-
           --this._health;
 
           if (this._health <= 0) {
@@ -119,7 +117,7 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
       function (pointer) {
         upX = pointer.x;
         upY = pointer.y;
-        console.log(upX, upY);
+
         if (upX < downX - threshold) {
           moveSubmarine(Direction.LEFT);
           console.log("swipeleft");
@@ -142,8 +140,6 @@ export default class Submarine extends Phaser.Physics.Arcade.Sprite {
 Phaser.GameObjects.GameObjectFactory.register("submarine", function (x, y) {
   const submarine = new Submarine(this.scene, x, y);
 
-  console.log(submarine);
-
   this.displayList.add(submarine);
   this.updateList.add(submarine);
 
@@ -152,7 +148,7 @@ Phaser.GameObjects.GameObjectFactory.register("submarine", function (x, y) {
     Phaser.Physics.Arcade.DYNAMIC_BODY
   );
 
-  submarine.body.setSize(submarine.width * 0.35, submarine.height);
+  submarine.body.setSize(submarine.width * 0.3, submarine.height * 0.8, true);
   //submarine.body.setAllowGravity(false);
 
   return submarine;

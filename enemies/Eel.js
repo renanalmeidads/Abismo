@@ -20,7 +20,7 @@ export default class Eel extends Phaser.Physics.Arcade.Sprite {
     this.moveEvent = scene.time.addEvent({
       delay: 3000,
       callback: () => {
-        this.direction = randomDirection();
+        this.direction = randomDirection([]);
       },
       loop: true,
     });
@@ -53,7 +53,11 @@ export default class Eel extends Phaser.Physics.Arcade.Sprite {
       return;
     }
 
-    this.direction = randomDirection(this.direction);
+    this.direction = randomDirection([
+      this.direction,
+      Direction.UP,
+      Direction.DOWN,
+    ]);
   }
 
   preUpdate(t, dt) {

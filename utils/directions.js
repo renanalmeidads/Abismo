@@ -10,11 +10,11 @@ export const getDirectionByValue = (value) => {
   return Object.keys(Direction).find((key) => Direction[key] === value);
 };
 
-export const randomDirection = (excludeDirection) => {
-  let newDirection = Phaser.Math.Between(2, 3);
+export const randomDirection = (excludeDirections) => {
+  let newDirection = Phaser.Math.Between(0, 3);
 
-  while (newDirection == excludeDirection) {
-    newDirection = Phaser.Math.Between(2, 3);
+  while (excludeDirections.includes(newDirection)) {
+    newDirection = Phaser.Math.Between(0, 3);
   }
 
   return newDirection;

@@ -25,6 +25,27 @@ const createJellyfishAnims = (anims) => {
     frameRate: 8,
     repeat: -1,
   });
+
+  anims.create({
+    key: "octopus-walk",
+    frames: anims.generateFrameNumbers("octopus-walk", { start: 0, end: 5 }),
+    frameRate: 10,
+    repeat: -1,
+  });
+
+  anims.create({
+    key: "swordfish-walk",
+    frames: anims.generateFrameNumbers("swordfish-walk", { start: 0, end: 3 }),
+    frameRate: 8,
+    repeat: -1,
+  });
+
+  anims.create({
+    key: "anglerfish-walk",
+    frames: anims.generateFrameNumbers("anglerfish-walk", { start: 0, end: 3 }),
+    frameRate: 14,
+    repeat: -1,
+  });
 };
 
 export { createJellyfishAnims };
